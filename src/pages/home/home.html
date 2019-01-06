@@ -7,10 +7,10 @@
   </ion-navbar>
   <ion-toolbar no-border-top>
     <ion-segment [(ngModel)]="segmento">
-      <ion-segment-button value="Ruta">
+      <ion-segment-button value="Ruta" (ionSelect)="mapViewO()">
         Ruta
       </ion-segment-button>
-      <ion-segment-button value="Estudiantes">
+      <ion-segment-button value="Estudiantes" (ionSelect)="mapViewC()">
         Estudiantes a Bordo
       </ion-segment-button>
     </ion-segment>
@@ -22,12 +22,23 @@
     <ion-list *ngSwitchCase="'Ruta'" active>
       <ion-item>
         <ion-label>Activar Ruta</ion-label>
-        <ion-toggle  checked="false"></ion-toggle>
+        <ion-toggle  checked="false" [(ngModel)]="activar"></ion-toggle>
       </ion-item>
-      
     </ion-list>
     <ion-list *ngSwitchCase="'Estudiantes'">
       
     </ion-list>
   </div>
+  <agm-map [latitude]="lat" [longitude]="lng" *ngIf="mapVi == true"  >
+    <agm-marker [latitude]="lat" [longitude]="lng" *ngIf="activar" ></agm-marker>
+  </agm-map>
+  <ion-list>
+    <ion-item *ngIf="mapVi == false">
+      <ion-avatar item-start>
+        <img src="../assests/imgs/estudiante.jpg">
+      </ion-avatar>
+      <h2>Cher</h2>
+      <p>Ugh. As if.</p>
+    </ion-item>
+  </ion-list>
 </ion-content>
