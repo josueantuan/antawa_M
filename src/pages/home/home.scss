@@ -8,4 +8,34 @@ page-home {
         opacity: 0;
         transition: opacity 150ms ease-in
       }
+      .circle-pic{
+        width:50px;
+        height:50px;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+    }
+    .nombre{
+        padding-top: 17px;
+        padding-left: 7px;
+    }
+    .boton{
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+    .imagen{
+        padding-top: 60px;
+    }
+    .botonM{
+        margin-bottom: 150px;
+        margin-right: 16px;
+        width: 42px; 
+        height: 42px;
+    }
+    .botonM2{
+        transform: translate3d(-14px, -9px, 0px) scale(1); 
+        height: 64px; 
+        width: 64px;
+         opacity: 0; 
+         transition: transform 277ms ease 0s, opacity 194ms ease 83ms;
+    }
 }

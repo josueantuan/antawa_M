@@ -38,7 +38,8 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  pendiente: rgb(243, 148, 24)
 );
 
 
@@ -86,3 +87,8 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+.toast-success {
+  > div{
+       background-color:#32db64!important;
+   }
+}

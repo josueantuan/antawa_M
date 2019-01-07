@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -22,23 +22,61 @@
     <ion-list *ngSwitchCase="'Ruta'" active>
       <ion-item>
         <ion-label>Activar Ruta</ion-label>
-        <ion-toggle  checked="false" [(ngModel)]="activar"></ion-toggle>
+        <ion-toggle  checked="false" [(ngModel)]="activar" (ngModelChange)="confirmar()" [disabled]='false'></ion-toggle>
       </ion-item>
     </ion-list>
     <ion-list *ngSwitchCase="'Estudiantes'">
-      
+      <div *ngIf="activar == false" align="center" class="imagen">
+        <img width="300" height="300" src="../../assets/imgs/activar.jpg" />
+        <h3 >Inicie la Ruta</h3>
+      </div>
     </ion-list>
   </div>
-  <agm-map [latitude]="lat" [longitude]="lng" *ngIf="mapVi == true"  >
-    <agm-marker [latitude]="lat" [longitude]="lng" *ngIf="activar" ></agm-marker>
+
+  <agm-map [latitude]="lat" [longitude]="lng" *ngIf="mapVi == true" [zoom]=14 >
+    <agm-marker [latitude]="lat" [longitude]="lng" *ngIf="activarM"  ></agm-marker>
   </agm-map>
-  <ion-list>
-    <ion-item *ngIf="mapVi == false">
-      <ion-avatar item-start>
-        <img src="../assests/imgs/estudiante.jpg">
-      </ion-avatar>
-      <h2>Cher</h2>
-      <p>Ugh. As if.</p>
-    </ion-item>
-  </ion-list>
+
+  <ion-list *ngIf="mapVi == false && activar ==true">
+      <ion-item-sliding *ngFor="let est of estudiantes">
+          <ion-item>
+              <ion-grid>
+                  <ion-row>
+                    <ion-col col-2>
+                      <img class="circle-pic" src="../../assets/imgs/{{est.img}}" />
+                    </ion-col>
+                    <ion-col class="col nombre" col-6 >
+                      <h1>{{est.nombre}}</h1>
+                     </ion-col>
+                    <ion-col col-4>
+                        <button ion-button  color="{{est.color}}" round full>{{est.estado}}</button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button color="primary" >
+                <ion-icon name="text"></ion-icon>
+                Text
+              </button>
+              <button ion-button color="secondary">
+                <ion-icon name="call"></ion-icon>
+                Call
+              </button>
+          </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+
+    <ion-fab bottom="" right="" *ngIf="mapVi == true">
+      <button color="light" ion-fab  class="fab fab-md" style="margin-bottom: 150px;margin-right: 16px;width: 42px; height: 42px;" (click)="locate()">
+        <ion-icon class="fab-close-icon icon icon-md ion-md-close" name="close" role="img" aria-label="close" ng-reflect-name="close">
+        </ion-icon>
+        <span class="button-inner">
+          <ion-icon name="md-locate" role="img" class="icon icon-md ion-md-locate" aria-label="locate" ng-reflect-name="locate" >
+          </ion-icon></span>
+          <div class="button-effect" style="transform: translate3d(-14px, -9px, 0px) scale(1); height: 64px; width: 64px; opacity: 0; transition: transform 277ms ease 0s, opacity 194ms ease 83ms;">
+          </div>
+      </button>
+    </ion-fab>
+
 </ion-content>
