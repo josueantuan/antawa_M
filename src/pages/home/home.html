@@ -33,7 +33,7 @@
     </ion-list>
   </div>
 
-  <agm-map [latitude]="lat" [longitude]="lng" *ngIf="mapVi == true" [zoom]=14 >
+  <agm-map [latitude]="lat" [longitude]="lng" *ngIf="mapVi == true" [zoom]=14 [streetViewControl]="false" [zoomControl]="false" [usePanning]="true">
     <agm-marker [latitude]="lat" [longitude]="lng" *ngIf="activarM"  ></agm-marker>
   </agm-map>
 
@@ -46,7 +46,7 @@
                       <img class="circle-pic" src="../../assets/imgs/{{est.img}}" />
                     </ion-col>
                     <ion-col class="col nombre" col-6 >
-                      <h1>{{est.nombre}}</h1>
+                      <h2>{{est.nombre}}</h2>
                      </ion-col>
                     <ion-col col-4>
                         <button ion-button  color="{{est.color}}" round full>{{est.estado}}</button>
@@ -67,15 +67,11 @@
         </ion-item-sliding>
     </ion-list>
 
-    <ion-fab bottom="" right="" *ngIf="mapVi == true">
-      <button color="light" ion-fab  class="fab fab-md" style="margin-bottom: 150px;margin-right: 16px;width: 42px; height: 42px;" (click)="locate()">
-        <ion-icon class="fab-close-icon icon icon-md ion-md-close" name="close" role="img" aria-label="close" ng-reflect-name="close">
+    
+    <ion-fab right bottom *ngIf="mapVi == true" class="locationB">
+      <button ion-fab color="light">
+        <ion-icon name="md-locate" (click)="locate()">
         </ion-icon>
-        <span class="button-inner">
-          <ion-icon name="md-locate" role="img" class="icon icon-md ion-md-locate" aria-label="locate" ng-reflect-name="locate" >
-          </ion-icon></span>
-          <div class="button-effect" style="transform: translate3d(-14px, -9px, 0px) scale(1); height: 64px; width: 64px; opacity: 0; transition: transform 277ms ease 0s, opacity 194ms ease 83ms;">
-          </div>
       </button>
     </ion-fab>
 
