@@ -11,7 +11,14 @@
       <ion-label stacked>Password</ion-label>
       <ion-input type="password"></ion-input>
     </ion-item>
-  
+    <ion-item>
+      <ion-label>Elija:</ion-label>
+      <ion-select [(ngModel)]="rol">
+        <ion-option value="rl">Representante Legal</ion-option>
+        <ion-option value="eps">Empresa Proovedora de Servicio</ion-option>
+        <ion-option value="cue">Coordiandor de Unidad Educativa</ion-option>
+      </ion-select>
+    </ion-item>
   </ion-list>
-  <button color="primary" ion-button class="login" >Ingresar</button>
+  <button color="primary" ion-button class="login" (click)="login()">Ingresar</button>
 </ion-content>
